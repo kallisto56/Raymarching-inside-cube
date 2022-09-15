@@ -75,12 +75,32 @@ float evaluateScene (vec3 point)
 }
 
 
+vec2 intersectAABB (vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMax)
+{
+	// taken from: https://gist.github.com/DomNomNom/46bb1ce47f68d255fd5d
+	// which was adopted from https://github.com/evanw/webgl-path-tracing/blob/master/webgl-path-tracing.js
+	vec3 tMin = (boxMin - rayOrigin) / rayDir;
+	vec3 tMax = (boxMax - rayOrigin) / rayDir;
+
+	vec3 t1 = min(tMin, tMax);
+	vec3 t2 = max(tMin, tMax);
+
+	float tNear = max(max(t1.x, t1.y), t1.z);
+	float tFar = min(min(t2.x, t2.y), t2.z);
+
+	return vec2(tNear, tFar);
+}
+
+
 void main ()
 {
 	// Try commenting 'normalize' operation and then move
 	// camera around object to see what happens.
 	vec3 direction = normalize(fragDirection);
 	vec3 point = fragOrigin;
+
+	// Uncomment this line to move a ray inside the cube
+	// point = point + direction * max(0, intersectAABB(point, direction, vec3(-0.5), vec3(+0.5)).x);
 
 	// ...
 	for (int n = 0; n < COUNT_STEPS; n++)
