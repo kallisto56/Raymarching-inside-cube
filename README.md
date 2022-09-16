@@ -24,14 +24,16 @@ float evaluateScene (vec3 point)
 	return sdSphere(point, vec3(0, 0, 1), 0.5);
 }
 ```
-This can be fixed by finding a point where the ray intersects with the ray. But we also want to account for cases, when the camera is inside the cube, so we're using max(0, nearest). This way, we will either go inside the cube, or the magnitude of the direction will equal zero:
+This can be fixed by finding a point where a ray intersects with the cube. But we also want to account for cases, when camera is already inside of the cube, that's why we are using `max(0, nearest)`:
 ```glsl
 // By default, this line is commented out in the `main` procedure
 point = point + direction * max(0, intersectAABB(point, direction, vec3(-0.5), vec3(+0.5)).x);
 ```
 
 ### References
-Signed distance functions used in this code are copied from the website of Inigo Quilez: (https://iquilezles.org/articles/distfunctions)
+- Signed distance functions used in this code are copied from the website of Inigo Quilez: (https://iquilezles.org/articles/distfunctions)
+- Algorithm for determining intersection points between ray and the cube is taken from: https://gist.github.com/DomNomNom/46bb1ce47f68d255fd5d
+which, according to the comment left by author, was adapted from: https://github.com/evanw/webgl-path-tracing/blob/master/webgl-path-tracing.js
 
 ----
 

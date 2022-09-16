@@ -78,7 +78,7 @@ float evaluateScene (vec3 point)
 vec2 intersectAABB (vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMax)
 {
 	// taken from: https://gist.github.com/DomNomNom/46bb1ce47f68d255fd5d
-	// which was adopted from https://github.com/evanw/webgl-path-tracing/blob/master/webgl-path-tracing.js
+	// which was adapted from https://github.com/evanw/webgl-path-tracing/blob/master/webgl-path-tracing.js
 	vec3 tMin = (boxMin - rayOrigin) / rayDir;
 	vec3 tMax = (boxMax - rayOrigin) / rayDir;
 
