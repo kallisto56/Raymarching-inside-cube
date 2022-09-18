@@ -34,6 +34,7 @@ point = point + direction * max(0, intersectAABB(point, direction, vec3(-0.5), v
 - Signed distance functions used in this code are copied from the website of Inigo Quilez: (https://iquilezles.org/articles/distfunctions)
 - Algorithm for determining intersection points between ray and the cube is taken from: https://gist.github.com/DomNomNom/46bb1ce47f68d255fd5d
 which, according to the comment left by author, was adapted from: https://github.com/evanw/webgl-path-tracing/blob/master/webgl-path-tracing.js
+- "Hello Cube" example project that I've used to get started was made by **c2d7fa**: https://github.com/c2d7fa/opengl-cube
 
 ----
 
